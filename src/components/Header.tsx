@@ -8,7 +8,7 @@ import { ghostButtonClass, iconButtonClass, shellClass } from './ui'
 const NAV_HREFS = [
   { href: '#features', key: 'navFeatures' as const },
   { href: '#privacy', key: 'navPrivacy' as const },
-  { href: '#clients', key: 'navClients' as const },
+  { href: '#web', key: 'navWeb' as const },
 ]
 
 export function Header() {
