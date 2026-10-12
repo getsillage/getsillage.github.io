@@ -6,7 +6,9 @@ Source repository: [`getsillage/getsillage.github.io`](https://github.com/getsil
 
 This is the product showcase site for [Sillage](https://github.com/getsillage/sillage) — a self-hosted, single-user space for private records, history review, and AI answers grounded in your own notes.
 
-This repository is separate from the product monorepo. Documentation, releases, engineering governance (`make check`, constitution, CI), and the application itself live in the main project ([sillage](https://github.com/getsillage/sillage)). Keep the public one-line product description and “no multi-user / no official hosting” claims aligned with the monorepo READMEs.
+Sillage is available through its responsive Web interface in English or Simplified Chinese. Users access their instance from desktop or mobile browsers without installing a client.
+
+This repository is separate from the product monorepo. Documentation, releases, engineering governance (`make check`, constitution, CI), and the application itself live in the main project ([sillage](https://github.com/getsillage/sillage)). Keep the public one-line product description, Web-only access, and “no multi-user / no official hosting” claims aligned with the current monorepo READMEs.
 
 ## Features
 

@@ -7,7 +7,6 @@ export const LINKS = {
   deployment: 'https://github.com/getsillage/sillage/blob/main/docs/user/deployment.md',
   data: 'https://github.com/getsillage/sillage/blob/main/docs/user/data.md',
   ai: 'https://github.com/getsillage/sillage/blob/main/docs/user/ai.md',
-  android: 'https://github.com/getsillage/sillage/tree/main/android',
   security: 'https://github.com/getsillage/sillage/blob/main/SECURITY.md',
   contributing: 'https://github.com/getsillage/sillage/blob/main/CONTRIBUTING.md',
   brand: 'https://github.com/getsillage/.github/blob/main/BRAND.md',
@@ -22,7 +21,7 @@ type Messages = {
   navFeatures: string
   navPrivacy: string
   navDeploy: string
-  navClients: string
+  navWeb: string
   menuOpen: string
   menuClose: string
   langLabel: string
@@ -36,7 +35,6 @@ type Messages = {
   ctaDeploy: string
   ctaGithub: string
   ctaDocs: string
-  ctaAndroid: string
   previewLabel: string
   previewCaption: string
   flowTitle: string
@@ -70,15 +68,10 @@ type Messages = {
   copyCode: string
   copied: string
   copyFailed: string
-  clientsTitle: string
-  clientsLead: string
-  clientsWebTitle: string
-  clientsWebBody: string
-  clientsWebPoints: string[]
-  clientsAndroidTitle: string
-  clientsAndroidBody: string
-  clientsAndroidPoints: string[]
-  clientsStack: string
+  webTitle: string
+  webLead: string
+  webBody: string
+  webPoints: string[]
   footerTagline: string
   footerProduct: string
   footerResources: string
@@ -89,7 +82,6 @@ type Messages = {
   footerDeploy: string
   footerData: string
   footerAi: string
-  footerAndroid: string
   footerSecurity: string
   footerContributing: string
   footerBrand: string
@@ -109,7 +101,7 @@ export const messages: Record<Locale, Messages> = {
     navFeatures: 'Features',
     navPrivacy: 'Privacy',
     navDeploy: 'Deploy',
-    navClients: 'Clients',
+    navWeb: 'Web',
     menuOpen: 'Open menu',
     menuClose: 'Close menu',
     langLabel: 'Language',
@@ -120,11 +112,10 @@ export const messages: Record<Locale, Messages> = {
     heroTitleSecond: 'Your answers come with sources.',
     heroLead:
       'Self-hosted, single-user space for private records, history review, and AI answers grounded in your own notes.',
-    heroProofs: ['No hosted Sillage account', 'Web + Android', 'MIT licensed'],
+    heroProofs: ['No hosted Sillage account', 'Browser access', 'MIT licensed'],
     ctaDeploy: 'Quick start',
     ctaGithub: 'View on GitHub',
     ctaDocs: 'Documentation',
-    ctaAndroid: 'Android',
     previewLabel: 'Illustrated product interface preview',
     previewCaption: 'Illustrative preview — not a live screenshot',
     flowTitle: 'How it works',
@@ -163,17 +154,17 @@ export const messages: Record<Locale, Messages> = {
         body: 'Configure Anthropic-compatible or OpenAI-compatible endpoints. No built-in model. No vendor lock-in.',
       },
       {
-        title: 'Web and Android',
-        body: 'Responsive Web UI and a native Android client, in English and Simplified Chinese.',
+        title: 'Responsive Web',
+        body: 'Write and revisit records from desktop or mobile browsers, in English or Simplified Chinese.',
       },
       {
-        title: 'Online and offline writing',
-        body: 'Write on the go with the Android client and sync records manually when ready.',
+        title: 'Recoverable drafts',
+        body: 'Recover unsaved writing in the editor and continue where you left off.',
       },
     ],
     facts: [
       { value: '1', label: 'account per instance' },
-      { value: '2', label: 'Web and Android clients' },
+      { value: '2', label: 'interface languages' },
       { value: '0', label: 'Sillage-hosted services' },
     ],
     notTitle: 'What Sillage is not',
@@ -231,17 +222,11 @@ export const messages: Record<Locale, Messages> = {
     copyCode: 'Copy',
     copied: 'Copied',
     copyFailed: 'Copy failed',
-    clientsTitle: 'Clients',
-    clientsLead: 'One instance, two clients. Same records, same boundaries.',
-    clientsWebTitle: 'Web',
-    clientsWebBody:
-      'React interface embedded in the Go binary. Light and dark themes, English and Simplified Chinese.',
-    clientsWebPoints: ['No separate frontend service', 'Responsive desktop and mobile UI', 'Included in every container image'],
-    clientsAndroidTitle: 'Android',
-    clientsAndroidBody:
-      'Native Kotlin and Jetpack Compose client with online and offline writing, and manual record sync.',
-    clientsAndroidPoints: ['Android 8.0 and later', 'Offline-first local writing', 'Manual, explicit synchronization'],
-    clientsStack: 'Go · Echo · SQLite · React · TypeScript · Kotlin · Compose · Protobuf',
+    webTitle: 'Web interface',
+    webLead: 'One instance, accessible from desktop and mobile browsers.',
+    webBody:
+      'Open your Sillage instance to write, revisit records, and use Ask. Choose light or dark themes and English or Simplified Chinese.',
+    webPoints: ['No client installation required', 'Responsive desktop and mobile interface', 'The same records on your instance'],
     footerTagline: 'Self-hosted private records.',
     footerProduct: 'Product',
     footerResources: 'Resources',
@@ -252,7 +237,6 @@ export const messages: Record<Locale, Messages> = {
     footerDeploy: 'Deployment',
     footerData: 'Data & backup',
     footerAi: 'AI & privacy',
-    footerAndroid: 'Android',
     footerSecurity: 'Security policy',
     footerContributing: 'Contributing',
     footerBrand: 'Brand guide',
@@ -270,7 +254,7 @@ export const messages: Record<Locale, Messages> = {
     navFeatures: '能力',
     navPrivacy: '隐私',
     navDeploy: '部署',
-    navClients: '客户端',
+    navWeb: '浏览器访问',
     menuOpen: '打开菜单',
     menuClose: '关闭菜单',
     langLabel: '语言',
@@ -281,11 +265,10 @@ export const messages: Record<Locale, Messages> = {
     heroTitleSecond: '答案带着来源。',
     heroLead:
       '自托管的单人记录空间：保存日常记录、回看历史，并基于自己的记录进行 AI 总结与问答。',
-    heroProofs: ['无需 Sillage 托管账号', 'Web + Android', 'MIT 开源'],
+    heroProofs: ['无需 Sillage 托管账号', '浏览器访问', 'MIT 开源'],
     ctaDeploy: '快速开始',
     ctaGithub: '查看 GitHub',
     ctaDocs: '文档',
-    ctaAndroid: 'Android',
     previewLabel: '产品界面示意预览',
     previewCaption: '界面示意，非真实截图',
     flowTitle: '如何使用',
@@ -323,17 +306,17 @@ export const messages: Record<Locale, Messages> = {
         body: '配置兼容 Anthropic 或 OpenAI 协议的端点。无内置模型，无厂商绑定。',
       },
       {
-        title: 'Web 与 Android',
-        body: '响应式 Web 界面与原生 Android 客户端，支持简体中文与英文。',
+        title: '响应式 Web',
+        body: '通过桌面或手机浏览器写记录、回看历史，支持简体中文与英文。',
       },
       {
-        title: '在线与离线书写',
-        body: 'Android 可离线写记录，需要时再手动同步。',
+        title: '草稿恢复',
+        body: '恢复编辑器中的未提交草稿，接着写下去。',
       },
     ],
     facts: [
       { value: '1', label: '个账号 / 每个实例' },
-      { value: '2', label: '个客户端：Web 与 Android' },
+      { value: '2', label: '种界面语言' },
       { value: '0', label: '项由 Sillage 提供的托管服务' },
     ],
     notTitle: 'Sillage 不是什么',
@@ -388,15 +371,10 @@ export const messages: Record<Locale, Messages> = {
     copyCode: '复制',
     copied: '已复制',
     copyFailed: '复制失败',
-    clientsTitle: '客户端',
-    clientsLead: '一个实例，两种客户端。同一套记录，同一套边界。',
-    clientsWebTitle: 'Web',
-    clientsWebBody: 'React 界面嵌入 Go 二进制。支持浅色/深色主题，以及简体中文与英文。',
-    clientsWebPoints: ['无需单独部署前端服务', '适配桌面与移动浏览器', '随每个容器镜像一同发布'],
-    clientsAndroidTitle: 'Android',
-    clientsAndroidBody: 'Kotlin 与 Jetpack Compose 原生客户端，支持在线/离线书写与手动同步记录。',
-    clientsAndroidPoints: ['支持 Android 8.0 及以上', '离线优先的本地书写', '由用户明确触发手动同步'],
-    clientsStack: 'Go · Echo · SQLite · React · TypeScript · Kotlin · Compose · Protobuf',
+    webTitle: '浏览器访问',
+    webLead: '一个实例，桌面与手机浏览器都能访问。',
+    webBody: '打开你的 Sillage 实例，即可写记录、回看历史和使用问答。可选择浅色或深色主题，以及简体中文或英文。',
+    webPoints: ['无需安装客户端', '响应式界面适配桌面与手机', '访问同一实例中的记录'],
     footerTagline: '自托管的私密记录空间。',
     footerProduct: '产品',
     footerResources: '资源',
@@ -407,7 +385,6 @@ export const messages: Record<Locale, Messages> = {
     footerDeploy: '部署',
     footerData: '数据与备份',
     footerAi: 'AI 与隐私',
-    footerAndroid: 'Android',
     footerSecurity: '安全策略',
     footerContributing: '贡献指南',
     footerBrand: '品牌规范',

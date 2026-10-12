@@ -1,4 +1,4 @@
-import { Clients } from './components/Clients'
+import { Web } from './components/Web'
 import { Deploy } from './components/Deploy'
 import { Features } from './components/Features'
 import { Footer } from './components/Footer'
@@ -23,7 +23,7 @@ export default function App() {
         <Hero />
         <Features />
         <Privacy />
-        <Clients />
+        <Web />
         <Deploy />
       </main>
       <Footer />

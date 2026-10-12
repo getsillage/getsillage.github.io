@@ -26,7 +26,6 @@ export function Footer() {
           <FooterColumn title={t.footerProduct}>
             <FooterLink href={LINKS.github}>{t.footerGithub}</FooterLink>
             <FooterLink href={LINKS.releases}>{t.footerReleases}</FooterLink>
-            <FooterLink href={LINKS.android}>{t.footerAndroid}</FooterLink>
           </FooterColumn>
 
           <FooterColumn title={t.footerResources}>
