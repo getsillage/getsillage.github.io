@@ -22,6 +22,8 @@ type Messages = {
   navPrivacy: string
   navDeploy: string
   navWeb: string
+  navDemo: string
+  previewLoading: string
   menuOpen: string
   menuClose: string
   langLabel: string
@@ -102,6 +104,8 @@ export const messages: Record<Locale, Messages> = {
     navPrivacy: 'Privacy',
     navDeploy: 'Deploy',
     navWeb: 'Web',
+    navDemo: 'Try it out',
+    previewLoading: 'Opening your demo space…',
     menuOpen: 'Open menu',
     menuClose: 'Close menu',
     langLabel: 'Language',
@@ -255,6 +259,8 @@ export const messages: Record<Locale, Messages> = {
     navPrivacy: '隐私',
     navDeploy: '部署',
     navWeb: '浏览器访问',
+    navDemo: '在线体验',
+    previewLoading: '正在打开体验空间…',
     menuOpen: '打开菜单',
     menuClose: '关闭菜单',
     langLabel: '语言',

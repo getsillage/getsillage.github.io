@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import { fileURLToPath } from 'node:url'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
@@ -9,8 +10,28 @@ const base = !rawBase || rawBase === '/' ? '/' : rawBase.endsWith('/') ? rawBase
 
 export default defineConfig({
   base,
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    {
+      name: 'demo-public-assets',
+      transform(source, id) {
+        if (base === '/' || !id.includes('/src/demo/product/')) return
+        // Preserve the upstream files; resolve their public icon under this site's base.
+        return {
+          code: source.replaceAll('"/sillage-icon.svg"', JSON.stringify(`${base}sillage-icon.svg`)),
+          map: null,
+        }
+      },
+    },
+    react(),
+    tailwindcss(),
+  ],
   build: {
+    rolldownOptions: {
+      input: {
+        index: fileURLToPath(new URL('./index.html', import.meta.url)),
+        demo: fileURLToPath(new URL('./demo/index.html', import.meta.url)),
+      },
+    },
     target: 'es2022',
     cssMinify: true,
     sourcemap: false,

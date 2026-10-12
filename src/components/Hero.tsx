@@ -32,20 +32,23 @@ export function Hero() {
               {t.heroLead}
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a href="#/demo" className={secondaryButtonClass}>
+                {t.navDemo} <span aria-hidden="true">↗</span>
+              </a>
               <a href="#deploy" className={primaryButtonClass}>
                 {t.ctaDeploy}
               </a>
-            <a
-              href={LINKS.github}
-              className={secondaryButtonClass}
-              target="_blank"
-              rel="noreferrer"
-            >
+              <a
+                href={LINKS.github}
+                className={secondaryButtonClass}
+                target="_blank"
+                rel="noreferrer"
+              >
                 {t.ctaGithub}
               </a>
             </div>
             <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium text-gray-500 dark:text-gray-400">
-              {t.heroProofs.map((item) => (
+              {t.heroProofs.map(item => (
                 <li key={item} className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-brand-glimmer" aria-hidden />
                   {item}
@@ -75,7 +78,7 @@ export function Hero() {
                     {step.title}
                   </h2>
                   <p className="mt-1.5 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                  {step.body}
+                    {step.body}
                   </p>
                 </div>
               </li>

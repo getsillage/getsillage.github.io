@@ -14,10 +14,19 @@ This repository is separate from the product monorepo. Documentation, releases, 
 
 - Single-page product landing (English / Simplified Chinese)
 - Light and dark themes
+- Interactive demo at `#/demo`, using the actual Sillage Web UI with 96 fictional records, photos, history, calendar, search, favorites, and archives
 - SEO: Open Graph, Twitter cards, JSON-LD, robots.txt, sitemap
 - Hash-based Content Security Policy, security headers, and HTML cache controls
 - Latest release tag pulled from GitHub for the Docker quick start
 - Static build suitable for Cloudflare Pages, GitHub Pages, Netlify, etc.
+
+## Interactive demo
+
+The demo can be opened from the navigation, hero, or illustrated product preview. It renders an unchanged snapshot of the actual Sillage Web client in a separate document, preserving the product's sidebar, Markdown editor, record rows, calendar, details, Ask, settings, mobile drawer, and themes. Only the outer demo notice and browser-local API/data adapter are specific to the experience page. The 96 fictional records include older entries for On This Day; images appear in record details as in the product. Demo changes stay in the current browser and can be reset from the demo notice. Ask uses clearly labelled preset answers and real demo-record references without calling an AI provider. No product server or account is needed. Photos are bundled locally; sources are documented in `public/demo/SOURCES.md`.
+
+The Web UI snapshot and its upstream revision are recorded in `src/demo/product/UPSTREAM.md`. Refresh it from the adjacent product checkout with `node scripts/sync-demo-product.mjs`. The website repository includes the snapshot so standalone builds do not require a second checkout. Do not modify the copied product components to change the demo. Interface language follows the real product behavior: changing language translates controls, not existing record content.
+
+File uploads and real account/AI-provider configuration are unavailable in this browser-only demo; unsuccessful uploads retain the draft. Hosting CSP and frame headers allow only same-origin embedding for the isolated product document.
 
 ## Stack
 

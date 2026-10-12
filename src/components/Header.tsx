@@ -47,7 +47,13 @@ export function Header() {
           className="flex items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400/40"
           onClick={closeMenu}
         >
-          <img src={assetUrl('sillage-icon.svg')} alt="" width={28} height={28} className="h-7 w-7" />
+          <img
+            src={assetUrl('sillage-icon.svg')}
+            alt=""
+            width={28}
+            height={28}
+            className="h-7 w-7"
+          />
           <span>
             <span className="block text-sm font-semibold tracking-tight text-gray-900 dark:text-gray-50">
               Sillage
@@ -59,11 +65,14 @@ export function Header() {
         </a>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label={t.navAria}>
-          {NAV_HREFS.map((item) => (
+          {NAV_HREFS.map(item => (
             <a key={item.href} href={item.href} className={ghostButtonClass}>
               {t[item.key]}
             </a>
           ))}
+          <a href="#/demo" className={ghostButtonClass}>
+            {t.navDemo}
+          </a>
           <a
             href="#deploy"
             className="ml-1 inline-flex h-9 items-center justify-center rounded-lg bg-gray-900 px-4 text-sm font-medium text-white transition hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400/45 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-white"
@@ -122,7 +131,7 @@ export function Header() {
             aria-expanded={menuOpen}
             aria-controls={menuId}
             aria-label={menuOpen ? t.menuClose : t.menuOpen}
-            onClick={() => setMenuOpen((v) => !v)}
+            onClick={() => setMenuOpen(v => !v)}
           >
             {menuOpen ? <CloseIcon /> : <MenuIcon />}
           </button>
@@ -135,7 +144,7 @@ export function Header() {
           className="border-t border-gray-200/80 bg-gray-50 dark:border-gray-800 dark:bg-gray-950 md:hidden"
         >
           <nav className={`${shellClass} flex flex-col gap-1 py-3`} aria-label={t.navAria}>
-            {NAV_HREFS.map((item) => (
+            {NAV_HREFS.map(item => (
               <a
                 ref={item === NAV_HREFS[0] ? firstMenuItemRef : undefined}
                 key={item.href}
@@ -152,6 +161,13 @@ export function Header() {
               onClick={closeMenu}
             >
               {t.navDeploy}
+            </a>
+            <a
+              href="#/demo"
+              className="rounded-lg px-3 py-3 text-sm font-medium text-gray-700 dark:text-gray-200"
+              onClick={closeMenu}
+            >
+              {t.navDemo}
             </a>
             <a
               href={LINKS.github}
