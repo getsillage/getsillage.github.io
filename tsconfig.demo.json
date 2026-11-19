@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.demo.tsbuildinfo",
+    "erasableSyntaxOnly": false
+  },
+  "include": ["demo", "src/demo/transport.ts", "src/demo/transport.test.ts", "src/demo/product"],
+  "exclude": []
+}

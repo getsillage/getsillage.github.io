@@ -49,7 +49,7 @@ export function contentSecurityPolicy(html, includeFrameAncestors = false) {
     "connect-src 'self' https://api.github.com",
     "font-src 'self'",
     "form-action 'self'",
-    "frame-src 'none'",
+    "frame-src 'self'",
     "img-src 'self' data:",
     "manifest-src 'self'",
     "media-src 'self'",
@@ -60,7 +60,7 @@ export function contentSecurityPolicy(html, includeFrameAncestors = false) {
     "style-src-attr 'none'",
     "worker-src 'self'",
   ]
-  if (includeFrameAncestors) directives.splice(6, 0, "frame-ancestors 'none'")
+  if (includeFrameAncestors) directives.splice(6, 0, "frame-ancestors 'self'")
   return directives.join('; ')
 }
 
@@ -164,14 +164,25 @@ export function finalizeBuild({
   html = injectCspMeta(html)
   writeFileSync(indexPath, html)
 
-  const headerCsp = contentSecurityPolicy(html, true)
+  const demoPath = join(dist, 'demo', 'index.html')
+  if (!existsSync(demoPath)) throw new Error('dist/demo/index.html missing')
+  const demoHtml = injectCspMeta(readFileSync(demoPath, 'utf8'))
+  writeFileSync(demoPath, demoHtml)
+
+  // The shared response header must authorize inline hashes from both entrypoints.
+  const headerCsp = contentSecurityPolicy(`${html}\n${demoHtml}`, true)
   const headersPath = join(dist, '_headers')
   if (!existsSync(headersPath)) throw new Error('dist/_headers missing')
   const headers = readFileSync(headersPath, 'utf8')
   if (!headers.includes('__SILLAGE_CSP__')) {
     throw new Error('dist/_headers is missing the CSP placeholder')
   }
-  writeFileSync(headersPath, headers.replaceAll('__SILLAGE_CSP__', headerCsp))
+  writeFileSync(
+    headersPath,
+    headers
+      .replaceAll('__SILLAGE_CSP__', headerCsp)
+      .replace(/^([ \t]*X-Frame-Options:[ \t]*)DENY[ \t]*$/gm, '$1SAMEORIGIN'),
+  )
   writeNotFoundPage(dist, normalizedBase, contentSecurityPolicy(''))
 
   return { siteUrl: normalizedSiteUrl, base: normalizedBase, csp: headerCsp }
