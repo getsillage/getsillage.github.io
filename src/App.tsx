@@ -1,4 +1,5 @@
-import { Clients } from './components/Clients'
+import { lazy, Suspense, useEffect, useState } from 'react'
+import { Web } from './components/Web'
 import { Deploy } from './components/Deploy'
 import { Features } from './components/Features'
 import { Footer } from './components/Footer'
@@ -7,8 +8,45 @@ import { Hero } from './components/Hero'
 import { Privacy } from './components/Privacy'
 import { useLocale } from './i18n/useLocale'
 
+const DemoPage = lazy(() => import('./demo/DemoPage'))
+
 export default function App() {
   const { t } = useLocale()
+  const [isDemo, setIsDemo] = useState(() => window.location.hash === '#/demo')
+
+  useEffect(() => {
+    const onHashChange = () => {
+      setIsDemo(window.location.hash === '#/demo')
+    }
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [])
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      if (isDemo) {
+        document.documentElement.scrollTop = 0
+        document.body.scrollTop = 0
+      } else {
+        document.getElementById(window.location.hash.slice(1))?.scrollIntoView?.()
+      }
+    })
+    return () => window.cancelAnimationFrame(frame)
+  }, [isDemo])
+
+  if (isDemo) {
+    return (
+      <Suspense
+        fallback={
+          <div className="p-8" role="status">
+            {t.previewLoading}
+          </div>
+        }
+      >
+        <DemoPage />
+      </Suspense>
+    )
+  }
 
   return (
     <div className="min-h-screen">
@@ -23,7 +61,7 @@ export default function App() {
         <Hero />
         <Features />
         <Privacy />
-        <Clients />
+        <Web />
         <Deploy />
       </main>
       <Footer />

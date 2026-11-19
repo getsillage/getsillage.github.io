@@ -15,14 +15,19 @@ function renderApp() {
 }
 
 describe('marketing site interactions', () => {
-  it('presents the launch promise, privacy model, clients, and deployment path', () => {
+  it('presents the launch promise, privacy model, browser access, and deployment path', () => {
     renderApp()
 
     expect(screen.getByText(/Self-hosted, single-user space for private records/)).toBeVisible()
     expect(screen.getByRole('img', { name: 'Sillage data flow' })).toBeVisible()
-    expect(screen.getByRole('heading', { name: 'Web' })).toBeVisible()
-    expect(screen.getByRole('heading', { name: 'Android' })).toBeVisible()
+    expect(screen.getByRole('heading', { name: 'Web interface' })).toBeVisible()
+    expect(screen.getByRole('link', { name: 'Web' })).toHaveAttribute('href', '#web')
+    expect(screen.getByText('interface languages')).toBeVisible()
     expect(screen.getByRole('link', { name: 'Quick start' })).toHaveAttribute('href', '#deploy')
+    expect(screen.getByRole('link', { name: 'Website repository' })).toHaveAttribute(
+      'href',
+      'https://github.com/getsillage/getsillage.github.io',
+    )
     expect(screen.getByText('0', { selector: 'dt' })).toBeVisible()
     expect(screen.getByText('Sillage-hosted services')).toBeVisible()
     expect(
@@ -50,6 +55,12 @@ describe('marketing site interactions', () => {
     expect(localStorage.getItem('sillage-page-locale')).toBe('zh')
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
       '记录由你自己保管。答案带着来源。',
+    )
+    expect(screen.getByRole('heading', { name: '浏览器访问' })).toBeVisible()
+    expect(screen.getByText('种界面语言')).toBeVisible()
+    expect(screen.getByRole('link', { name: '官网源码仓库' })).toHaveAttribute(
+      'href',
+      'https://github.com/getsillage/getsillage.github.io',
     )
 
     await user.click(screen.getByRole('button', { name: '切换到深色主题' }))

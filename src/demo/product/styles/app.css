@@ -1,0 +1,185 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "PingFang SC", "Microsoft YaHei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+
+  /* Neutral grayscale, ChatGPT-web flavored. No chromatic accent: emphasis is
+     near-black (light) / near-white (dark). */
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f4f4f4;
+  --color-gray-200: #e6e6e6;
+  --color-gray-300: #d4d4d4;
+  --color-gray-400: #a3a3a3;
+  --color-gray-500: #737373;
+  --color-gray-600: #525252;
+  --color-gray-700: #404040;
+  --color-gray-800: #2a2a2a;
+  --color-gray-900: #1f1f1f;
+  --color-gray-950: #131313;
+}
+
+html,
+body {
+  @apply bg-gray-50 dark:bg-gray-950;
+}
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 0;
+  min-height: 100vh;
+}
+
+/* Respect users who opt out of motion (vestibular comfort). */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  @apply font-sans text-gray-900 antialiased dark:text-gray-100;
+  text-rendering: optimizeLegibility;
+}
+
+input,
+button,
+select,
+textarea {
+  font: inherit;
+}
+
+/* Keep editing legible and avoid automatic input zoom on mobile Safari. */
+@media (max-width: 639px) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  select,
+  textarea {
+    font-size: 1rem;
+  }
+}
+
+button,
+summary,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:not(:disabled),
+summary {
+  cursor: pointer;
+}
+
+button,
+a,
+summary {
+  touch-action: manipulation;
+}
+
+::selection {
+  background: rgb(0 0 0 / 0.08);
+}
+
+.dark ::selection {
+  background: rgb(255 255 255 / 0.16);
+}
+
+[data-route-focus-target] {
+  scroll-margin-top: 5rem;
+}
+
+[data-route-focus-target]:focus-visible {
+  border-radius: 0.25rem;
+  outline: 2px solid var(--color-gray-500);
+  outline-offset: 4px;
+}
+
+.dark [data-route-focus-target]:focus-visible {
+  outline-color: var(--color-gray-400);
+}
+
+.surface-enter {
+  animation: surface-enter 180ms ease-out both;
+}
+
+.drawer-enter {
+  animation: drawer-enter 180ms ease-out both;
+}
+
+@keyframes surface-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawer-enter {
+  from {
+    transform: translateX(-12px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+/* Search inputs render their own clear button; hide WebKit's native one so the
+   field does not show two clear affordances. */
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(115 115 115 / 0.28);
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(82 82 82 / 0.4);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}

@@ -26,7 +26,6 @@ export function Footer() {
           <FooterColumn title={t.footerProduct}>
             <FooterLink href={LINKS.github}>{t.footerGithub}</FooterLink>
             <FooterLink href={LINKS.releases}>{t.footerReleases}</FooterLink>
-            <FooterLink href={LINKS.android}>{t.footerAndroid}</FooterLink>
           </FooterColumn>
 
           <FooterColumn title={t.footerResources}>
@@ -41,7 +40,7 @@ export function Footer() {
             <FooterLink href={LINKS.contributing}>{t.footerContributing}</FooterLink>
             <FooterLink href={LINKS.brand}>{t.footerBrand}</FooterLink>
             <FooterLink href={LINKS.license}>{t.footerLicense}</FooterLink>
-            <FooterLink href={SITE.pageRepoUrl}>{t.footerSiteSource}</FooterLink>
+            <FooterLink href={SITE.websiteRepoUrl}>{t.footerWebsiteRepository}</FooterLink>
           </FooterColumn>
         </div>
 
